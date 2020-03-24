@@ -1,1 +1,27 @@
-<p>header works!</p>
+<mat-toolbar>
+    <span><img src="../../../../assets/img/pokeball2.png" alt=""></span>
+    <ul routerLinkActive="active">
+        <a [routerLink]="['home']" mat-button>Home</a>
+    </ul>
+
+    <ul routerLinkActive="active">
+        <a [routerLink]="['pokemones']" mat-button>Pokemones</a>
+    </ul>
+
+    <div class="spacer"></div>
+
+    <!-- <mat-form-field floatLabel="auto">
+        <mat-icon matSuffix>search</mat-icon>
+        <input matInput type="search" placeholder="Buscar pokemon" class="search-input">
+        <button mat-stroked-button>Buscar</button>
+    </mat-form-field> -->
+
+    <mat-form-field class="example-form-field">
+        <input matInput type="search" aria-label="Clear" placeholder="Buscar pokemon">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>search</mat-icon>
+        </button>
+
+    </mat-form-field>
+    <!-- <button mat-stroked-button>Buscar</button> -->
+</mat-toolbar>
