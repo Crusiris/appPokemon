@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+/////////////*****Modulo para peticiones Http*****////////////
+import { HttpClientModule } from '@angular/common/http';
 ///////////*****ARCHIVO DE RUTAS*****////////////
 import { AppRoutingModule } from './app-routing.module';
 
 ///////////*****MODULO ANGULAR MATERIAL*****////////////
 import { MaterialModule } from './material.module';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -31,7 +31,8 @@ import { PokeCardComponent } from './components/poke-card/poke-card.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
  
   ],
   providers: [],
