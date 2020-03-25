@@ -10,6 +10,13 @@ $color-esmeralda:rgb(94, 221, 214);
     .pokecard {
         width: 300px;
         margin: 2em;
+        display: flex;
+        flex-direction: column;
+        img {
+            width: 150px;
+            height: auto;
+            justify-content: center;
+        }
     }
     mat-card-actions {
         .seeMoreInfo {

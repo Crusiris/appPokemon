@@ -14,6 +14,8 @@ export class PokeCardComponent implements OnInit {
   //Variable para guardar el objeto de pokemones
   arrayPokemon: any[]=[];
 
+  
+
   //Inyectando servicio y modulo http
   constructor(private service:PokemonService, public http: HttpClient) { 
 
@@ -22,11 +24,14 @@ export class PokeCardComponent implements OnInit {
     //mapeando data para hacer peticiones por pokemon
     arrayUrlPokemon.map(pokemon => {
       return this.http.get(pokemon.url).subscribe(dataPokemon=>{
-        console.log("Data pokemon por url")
+
         console.log(dataPokemon)
+
+        this.arrayPokemon.push(dataPokemon)
+        
        })
      })
-   
+   console.log(this.arrayPokemon)
   })
   }
 
