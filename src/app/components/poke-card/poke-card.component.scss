@@ -1,0 +1,19 @@
+$color-esmeralda:rgb(94, 221, 214);
+;
+.container-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .pokecard {
+        width: 25.3%;
+        margin: 2em;
+    }
+    mat-card-actions {
+        .seeMoreInfo {
+            color: $color-esmeralda;
+            border: 1px solid $color-esmeralda;
+            width: 100%;
+        }
+    }
+}

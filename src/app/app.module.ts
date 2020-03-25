@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { PokemonesComponent } from './components/pokemones/pokemones.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
+import { PokeCardComponent } from './components/poke-card/poke-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
     HeaderComponent,
     HomeComponent,
     PokemonesComponent,
-    PokemonComponent
+    PokemonComponent,
+    PokeCardComponent
   ],
   imports: [
     BrowserModule,
