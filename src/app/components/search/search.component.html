@@ -1,9 +1,29 @@
-<form class="containersearch">
-    <mat-form-field class="search">
-        <mat-label>Encuentra tu pokemon</mat-label>
-        <input matInput placeholder="Pokemon">
-    </mat-form-field>
-    <div>
-        <button class="btnSearch" mat-button>Buscar</button>
-    </div>
-</form>
+<section class="container-card">
+    <mat-card class="pokecard" *ngFor="let item of pokemon; let i = index">
+
+        <mat-card-header>
+            <div mat-card-avatar class="headerImg"></div>
+            <mat-card-title>{{item.name | titlecase}}</mat-card-title>
+            <mat-card-subtitle>{{item.type | titlecase}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+
+        <mat-card-content>
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip>{{i}}/{{pokemon.length}}</mat-chip>
+                <div>
+                    <mat-chip>{{item.evolution.name}}</mat-chip>
+                </div>
+
+            </mat-chip-list>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button class=" btn seeMoreInfo" mat-flat-button>Ver mas ...</button>
+
+        </mat-card-actions>
+    </mat-card>
+
+</section>

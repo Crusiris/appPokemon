@@ -8,12 +8,15 @@
 
     <div class="spacer"></div>
 
-    <mat-form-field class="example-form-field">
-        <input #finished matInput type="text" (keyup.enter)="search(finished.value)" aria-label="Clear" placeholder="Buscar pokemon">
-        <button (click)="search(finished.value)" mat-button matSuffix mat-icon-button>
-              <mat-icon >search</mat-icon>
-        </button>
+    <form class="containersearch">
+        <mat-form-field class="search">
+            <mat-label>Encuentra tu pokemon</mat-label>
+            <input #finished (keyup.enter)="search(finished.value)" matInput>
+        </mat-form-field>
+        <div class=containerBtn>
+            <button class="btn btnSearch" mat-button (click)="search(finished.value)">Buscar</button>
+        </div>
+    </form>
 
-    </mat-form-field>
-    <!-- <button mat-stroked-button>Buscar</button> -->
+
 </mat-toolbar>

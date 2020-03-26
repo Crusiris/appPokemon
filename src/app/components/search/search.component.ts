@@ -9,13 +9,18 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+   //Variable para guardar el objeto de pokemon
   pokemon:any[]=[];
-  constructor(private activatedRoute:ActivatedRoute, private service:PokemonService) { }
+  constructor(private activatedRoute:ActivatedRoute, private service:PokemonService) { 
+
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params=>{
-  
-      this.service.searchPokemon(params['finished']);
+      
+      this.service.searchPokemon( params['finished']).subscribe((data: any[])=>{
+        this.pokemon = data
+      });
       
     })
   }

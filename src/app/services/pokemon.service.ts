@@ -7,7 +7,8 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class PokemonService {
-  arrayPokemon: any[] = [];
+  arrayPokemones: any[] = [];
+  arrayPokemon: any[]=[];
   constructor(public http: HttpClient) {}
   //Centralizando peticion
   getQuery(query: string) {
@@ -33,7 +34,7 @@ export class PokemonService {
                 );
                 const [{ flavor_text }] = description;
                  //pusheando al array
-                this.arrayPokemon.push({
+                this.arrayPokemones.push({
                   name: name,
                   image: front_default,
                   type: type.name,
@@ -49,7 +50,7 @@ export class PokemonService {
 
     return new Observable(observer => {
       setTimeout(() => {
-        observer.next(this.arrayPokemon);
+        observer.next(this.arrayPokemones);
       }, 1000);
     });
   }
@@ -61,10 +62,43 @@ export class PokemonService {
   }
 
   searchPokemon(finished){
+    //Convirtiendo termino en minuscula
     let namePokemon = finished.toLowerCase()
-   return this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).subscribe(data=>{
-     console.log(data)
+    let pokemon = new Object;
+    let specipokemon = new Object;
+    //Peticion por nombre
+    this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).pipe(map(data=>{
+     //Guardando n una variable el resultado de la peticion
+     pokemon = data;
+     //Obteniendo [name, img, type, ] DESTRUCTURING 
+       const { name } = pokemon['species'];
+        const { url } = pokemon['species'];
+        const { front_default } = pokemon['sprites'];
+        const [{ type }] = pokemon['types'];
+        //peticion para obtener descripcion
+         this.http.get(url).subscribe(dataSpecie =>{
+          const description = dataSpecie["flavor_text_entries"].filter(
+            res => res.language.name === "es"
+          );
+          const [{ flavor_text }] = description;
+           //pusheando al array
+           this.arrayPokemon.push({
+            name: name,
+            image: front_default,
+            type: type.name,
+            evolution: dataSpecie["evolves_from_species"] || {name: 'no posee' },
+            description: flavor_text
+           })
+         })  
    })
-  }
+  ).subscribe();
+  
+  return new Observable(observer => {
+    setTimeout(() => {
+      observer.next(this.arrayPokemon);
+    }, 1000);
+  });
+
+}
 
 }

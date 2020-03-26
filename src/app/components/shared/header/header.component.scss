@@ -1,3 +1,4 @@
+$color-esmeralda:rgb(94, 221, 214);
 span {
     img {
         width: 50px;
@@ -9,5 +10,31 @@ span {
 mat-toolbar {
     div {
         flex: 3 3 auto
+    }
+    .containersearch {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 1.5em;
+        .btnSearch {
+            margin-top: 1em;
+            margin-left: 1em;
+        }
+        mat-form-field {
+            mat-label {
+                font-size: 15px;
+            }
+        }
+        .containerBtn {
+            .btn {
+                color: $color-esmeralda;
+                border: 1px solid $color-esmeralda;
+                width: 100%;
+                &:hover {
+                    color: rgb(245, 245, 245);
+                    background-color: $color-esmeralda;
+                }
+            }
+        }
     }
 }
