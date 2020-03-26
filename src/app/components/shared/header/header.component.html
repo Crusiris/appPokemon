@@ -1,8 +1,6 @@
 <mat-toolbar>
     <span><img src="../../../../assets/img/pokeball2.png" alt=""></span>
-    <ul routerLinkActive="active">
-        <a [routerLink]="['home']" mat-button>Home</a>
-    </ul>
+
 
     <ul routerLinkActive="active">
         <a [routerLink]="['pokemones']" mat-button>Pokemones</a>
@@ -12,8 +10,8 @@
     <div class="spacer"></div>
 
     <mat-form-field class="example-form-field">
-        <input matInput type="search" aria-label="Clear" placeholder="Buscar pokemon">
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <input #finished matInput type="text" (keyup)="search(finished.value)" aria-label="Clear" placeholder="Buscar pokemon">
+        <button mat-button matSuffix mat-icon-button>
               <mat-icon >search</mat-icon>
         </button>
 

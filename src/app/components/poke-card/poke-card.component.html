@@ -1,5 +1,5 @@
 <section class="container-card">
-    <mat-card class="pokecard" *ngFor="let item of arrayPokemon; let i = index">
+    <mat-card class="pokecard" *ngFor="let item of Pokemones; let i = index">
 
         <mat-card-header>
             <div mat-card-avatar class="headerImg"></div>
@@ -11,7 +11,7 @@
 
         <mat-card-content>
             <mat-chip-list aria-label="Fish selection">
-                <mat-chip>{{i}}/{{arrayPokemon.length}}</mat-chip>
+                <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip>
                 <div>
                     <mat-chip>{{item.evolution.name}}</mat-chip>
                 </div>

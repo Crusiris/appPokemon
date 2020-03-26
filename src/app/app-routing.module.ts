@@ -8,7 +8,7 @@ import { SearchComponent } from './components/search/search.component';
 const routes: Routes = [
   
   { path: "pokemones", component: PokemonesComponent },
-  { path: "search", component: SearchComponent },
+  { path: "search/:termino", component: SearchComponent },
   { path: "pokemon", component: PokemonComponent },
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "**", pathMatch: "full", redirectTo: "home" }
