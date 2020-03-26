@@ -13,8 +13,6 @@ import { element } from 'protractor';
 export class PokeCardComponent implements OnInit {
   //Variable para guardar el objeto de pokemones
   arrayPokemon: any[]=[];
- 
-  
 
   //Inyectando servicio y modulo http
   constructor(private service: PokemonService, public http: HttpClient) {
@@ -51,24 +49,6 @@ export class PokeCardComponent implements OnInit {
       console.log(this.arrayPokemon);
     });
   }
-
-
-  // //Inyectando servicio y modulo http
-  // constructor(private service:PokemonService, public http: HttpClient) { 
-
-  // this.service.getDatapokemon().subscribe(data =>{
-  //   const arrayUrlPokemon = data["results"]
-  //   //mapeando data para hacer peticiones por pokemon
-  //   arrayUrlPokemon.map(pokemon => {
-  //     return this.http.get(pokemon.url).subscribe(dataPokemon=>{
-       
-  //       this.arrayPokemon.push(dataPokemon)
-        
-  //      })
-  //    })
-  //  console.log(this.arrayPokemon)
-  // })
-  // }
 
   ngOnInit() {
   }
