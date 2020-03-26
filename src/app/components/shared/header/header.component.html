@@ -4,14 +4,13 @@
 
     <ul routerLinkActive="active">
         <a [routerLink]="['pokemones']" mat-button>Pokemones</a>
-        <a [routerLink]="['search']" mat-button>Buscador</a>
     </ul>
 
     <div class="spacer"></div>
 
     <mat-form-field class="example-form-field">
-        <input #finished matInput type="text" (keyup)="search(finished.value)" aria-label="Clear" placeholder="Buscar pokemon">
-        <button mat-button matSuffix mat-icon-button>
+        <input #finished matInput type="text" (keyup.enter)="search(finished.value)" aria-label="Clear" placeholder="Buscar pokemon">
+        <button (click)="search(finished.value)" mat-button matSuffix mat-icon-button>
               <mat-icon >search</mat-icon>
         </button>
 

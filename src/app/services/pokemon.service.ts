@@ -59,4 +59,12 @@ export class PokemonService {
   getDatapokemon() {
     return this.getQuery("pokemon/?limit=25");
   }
+
+  searchPokemon(finished){
+    let namePokemon = finished.toLowerCase()
+   return this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).subscribe(data=>{
+     console.log(data)
+   })
+  }
+
 }
