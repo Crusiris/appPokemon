@@ -13,19 +13,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 ///////////*****COMPONENTES*****////////////
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
-import { HomeComponent } from './components/home/home.component';
 import { PokemonesComponent } from './components/pokemones/pokemones.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     PokemonesComponent,
     PokemonComponent,
-    PokeCardComponent
+    PokeCardComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

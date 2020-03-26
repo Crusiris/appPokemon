@@ -6,23 +6,29 @@ $color-esmeralda:rgb(94, 221, 214);
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: blue;
+    img {
+        mat-card-image {
+            height: 100px;
+        }
+    }
     .pokecard {
-        width: 300px;
+        width: 200px;
+        height: 300px;
         margin: 2em;
         display: flex;
         flex-direction: column;
-        img {
-            width: 150px;
-            height: auto;
-            justify-content: center;
-        }
+        align-content: center;
+        background-color: rgb(245, 245, 245);
     }
     mat-card-actions {
         .seeMoreInfo {
             color: $color-esmeralda;
             border: 1px solid $color-esmeralda;
             width: 100%;
+            &:hover {
+                color: rgb(245, 245, 245);
+                background-color: $color-esmeralda;
+            }
         }
     }
 }

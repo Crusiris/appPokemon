@@ -13,27 +13,62 @@ import { element } from 'protractor';
 export class PokeCardComponent implements OnInit {
   //Variable para guardar el objeto de pokemones
   arrayPokemon: any[]=[];
-
+ 
   
 
   //Inyectando servicio y modulo http
-  constructor(private service:PokemonService, public http: HttpClient) { 
-
-  this.service.getDatapokemon().subscribe(data =>{
-    const arrayUrlPokemon = data["results"]
-    //mapeando data para hacer peticiones por pokemon
-    arrayUrlPokemon.map(pokemon => {
-      return this.http.get(pokemon.url).subscribe(dataPokemon=>{
-
-        console.log(dataPokemon)
-
-        this.arrayPokemon.push(dataPokemon)
-        
-       })
-     })
-   console.log(this.arrayPokemon)
-  })
+  constructor(private service: PokemonService, public http: HttpClient) {
+    this.service.getDatapokemon().subscribe(data => {
+      const arrayUrlPokemon = data["results"];
+      //Recorriendo la data para hacer peticiones por pokemon
+      arrayUrlPokemon.forEach(pokemon => {
+        //Peticiones a urls pokemon
+        this.http.get(pokemon.url).subscribe(dataPokemon => {
+          
+          //destructuring
+          const { front_default } = dataPokemon["sprites"];//img
+          const [{ type }] = dataPokemon["types"]; //tipo
+          const { url, name } = dataPokemon["species"];//specie
+          
+          //Peticion url especie y descripcion pokemon 
+          this.http.get(url).subscribe(dataSpecie => {
+             //destructuring y filtrado de descripcion segun lenguaje
+            const description = dataSpecie["flavor_text_entries"].filter(
+              res => res.language.name === "es"
+            );
+            const [{ flavor_text }] = description;
+            //pusheando al array
+            this.arrayPokemon.push({
+              name: name,
+              image: front_default,
+              type: type.name,
+              evolution: dataSpecie["evolves_from_species"] || {name: 'no posee' },
+              description: flavor_text
+            });
+          });
+        });
+      });
+      console.log(this.arrayPokemon);
+    });
   }
+
+
+  // //Inyectando servicio y modulo http
+  // constructor(private service:PokemonService, public http: HttpClient) { 
+
+  // this.service.getDatapokemon().subscribe(data =>{
+  //   const arrayUrlPokemon = data["results"]
+  //   //mapeando data para hacer peticiones por pokemon
+  //   arrayUrlPokemon.map(pokemon => {
+  //     return this.http.get(pokemon.url).subscribe(dataPokemon=>{
+       
+  //       this.arrayPokemon.push(dataPokemon)
+        
+  //      })
+  //    })
+  //  console.log(this.arrayPokemon)
+  // })
+  // }
 
   ngOnInit() {
   }

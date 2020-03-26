@@ -17,7 +17,7 @@ constructor(public http: HttpClient) {}
 //[FOTO, NOMBRE, NUMERO Y TIPO]
 //Peticion Http para obtener name de pokemon y url para obtener informacion mas detallada del pokemon
     getDatapokemon(){
-      return this.getQuery("pokemon")
+      return this.getQuery("pokemon/?limit=25")
     }
 
    
