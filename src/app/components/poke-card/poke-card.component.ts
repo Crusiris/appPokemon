@@ -22,7 +22,7 @@ export class PokeCardComponent implements OnInit {
 
   seePokemon(){
     
-   this.router.navigate(["/pokemon", this.index]);
+   this.router.navigate(["/pokemon", this.pokemon.name]);
    
   }
 

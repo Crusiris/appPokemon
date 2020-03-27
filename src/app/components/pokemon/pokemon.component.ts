@@ -14,11 +14,14 @@ export class PokemonComponent {
   
   constructor(private activatedRoute: ActivatedRoute, private service:PokemonService, private router: Router) { 
     this.activatedRoute.params.subscribe(params =>{
+      console.log('en params vieneee')
+      console.log(params)
      
-      this.pokemonSelected= this.service.goPokemon(params['index'])
-      console.log('pokemon seleccionado')
-      
-      console.log(this.pokemonSelected)
+      this.service.goPokemon(params['index']).subscribe((res:[])=>{
+        this.pokemonSelected = res.pop()
+        console.log('aquiiiiiiii')
+        console.log(this.pokemonSelected.evolution.name)
+      })
     })
   }
 

@@ -64,6 +64,8 @@ export class PokemonService {
   searchPokemon(finished){
     //Convirtiendo termino en minuscula
     let namePokemon = finished.toLowerCase()
+    console.log('------> nombre')
+    console.log(namePokemon)
     let pokemon = new Object;
     let specipokemon = new Object;
     //Peticion por nombre
@@ -84,7 +86,7 @@ export class PokemonService {
           const [{ flavor_text }] = description;
           // pusheando al array
            this.arrayPokemon.push({
-             id:index+1,
+             
             name: name,
             image: front_default,
             type: type.name,
@@ -106,9 +108,9 @@ export class PokemonService {
 
 goPokemon(id: string) {
   console.log('------------->')
- console.log(this.arrayPokemones[id])
- console.log(this.arrayPokemones)
-  return this.arrayPokemones[id];
+  console.log(id)
+  console.log(this.arrayPokemon)
+  return this.searchPokemon(id);
 }
 
 }
