@@ -12,7 +12,10 @@ export class HeaderComponent {
   constructor(private router:Router) { }
 
   search(finished:string){
-   this.router.navigate(['/search', finished])
+    if(finished.length>0){
+      this.router.navigate(['/search', finished])
+    }
+   
  
   }
 

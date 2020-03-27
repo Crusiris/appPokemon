@@ -1,7 +1,7 @@
 <section class="container">
     <mat-card class="card">
         <mat-card-header>
-            <mat-card-title>Pokemon: {{pokemonSelected.name | titlecase}}</mat-card-title>
+            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>
             <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>
         </mat-card-header>
         <img class="imgCard" [src]="pokemonSelected.image" alt="imagen pokemon">

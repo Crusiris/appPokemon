@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       
       this.service.searchPokemon( params['finished']).subscribe((data: any[])=>{
+        console.log(data)
         this.pokemon = data
       });
       

@@ -67,10 +67,11 @@ export class PokemonService {
     let pokemon = new Object;
     let specipokemon = new Object;
     //Peticion por nombre
-    this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).pipe(map(data=>{
+    this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).pipe(map((data, index: number) =>{
      //Guardando n una variable el resultado de la peticion
      pokemon = data;
      //Obteniendo [name, img, type, ] DESTRUCTURING 
+     
        const { name } = pokemon['species'];
         const { url } = pokemon['species'];
         const { front_default } = pokemon['sprites'];
@@ -81,8 +82,9 @@ export class PokemonService {
             res => res.language.name === "es"
           );
           const [{ flavor_text }] = description;
-           //pusheando al array
+          // pusheando al array
            this.arrayPokemon.push({
+             id:index+1,
             name: name,
             image: front_default,
             type: type.name,
@@ -102,8 +104,9 @@ export class PokemonService {
 }
 
 
-goPokemon(idx: string) {
-  return this.arrayPokemones[idx];
+goPokemon(id: string) {
+ 
+  return this.arrayPokemones[id];
 }
 
 }

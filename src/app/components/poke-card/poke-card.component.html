@@ -2,8 +2,8 @@
 
     <mat-card-header>
         <div mat-card-avatar class="headerImg"></div>
-        <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
-        <mat-card-subtitle>{{pokemon.type | titlecase}}</mat-card-subtitle>
+        <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>
+        <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image [src]="pokemon.image" alt="foto pokemon">
@@ -12,7 +12,7 @@
         <mat-chip-list aria-label="Fish selection">
             <!-- <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip> -->
             <div>
-                <mat-chip>{{pokemon.evolution.name}}</mat-chip>
+                <mat-chip>Evolucion: {{pokemon.evolution.name | titlecase}}</mat-chip>
             </div>
 
         </mat-chip-list>
