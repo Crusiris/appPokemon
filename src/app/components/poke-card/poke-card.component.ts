@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { PokemonService } from "../../services/pokemon.service";
-import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-poke-card",
@@ -8,14 +8,26 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./poke-card.component.scss"]
 })
 export class PokeCardComponent implements OnInit {
+  @Input() item: any = {};
+  @Input() index: number;
+
+  @Output() pokemonSelected: EventEmitter<number>;
   //Variable para guardar el objeto de pokemones
   Pokemones: any[] = [];
 
   //Inyectando servicio y modulo http
-  constructor(private service: PokemonService, public http: HttpClient) {
+  constructor(private service: PokemonService, private router: Router) {
+    this.pokemonSelected= new EventEmitter();
+
     this.service.getDatapokemon().subscribe((data: any[]) => {
       this.Pokemones = data
     });
+  }
+
+  seePokemon(){
+    
+   this.router.navigate(["/pokemon"]);
+   
   }
 
   ngOnInit() {}
