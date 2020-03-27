@@ -41,7 +41,7 @@ module.exports = "<app-header></app-header>\n\n<div>\n    <router-outlet></route
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container-card\">\n    <mat-card class=\"pokecard\" *ngFor=\"let item of Pokemones; let i = index\">\n\n        <mat-card-header>\n            <div mat-card-avatar class=\"headerImg\"></div>\n            <mat-card-title>{{item.name | titlecase}}</mat-card-title>\n            <mat-card-subtitle>{{item.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n\n        <img mat-card-image [src]=\"item.image\" alt=\"Photo of a Shiba Inu\">\n\n        <mat-card-content>\n            <mat-chip-list aria-label=\"Fish selection\">\n                <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip>\n                <div>\n                    <mat-chip>{{item.evolution.name}}</mat-chip>\n                </div>\n\n            </mat-chip-list>\n\n        </mat-card-content>\n\n        <mat-card-actions>\n            <button (click)=\"seePokemon()\" class=\"btn seeMoreInfo\" mat-flat-button>Ver mas ...</button>\n\n        </mat-card-actions>\n    </mat-card>\n\n</section>"
+module.exports = "<mat-card class=\"pokecard\">\n\n    <mat-card-header>\n        <div mat-card-avatar class=\"headerImg\"></div>\n        <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>\n        <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"pokemon.image\" alt=\"foto pokemon\">\n\n    <mat-card-content>\n        <mat-chip-list aria-label=\"Fish selection\">\n            <!-- <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip> -->\n            <div>\n                <mat-chip>Evolucion: {{pokemon.evolution.name | titlecase}}</mat-chip>\n            </div>\n\n        </mat-chip-list>\n\n    </mat-card-content>\n\n    <mat-card-actions>\n        <button (click)=\"seePokemon()\" class=\"btn seeMoreInfo\" mat-flat-button>Ver mas ...</button>\n\n    </mat-card-actions>\n</mat-card>"
 
 /***/ }),
 
@@ -52,7 +52,7 @@ module.exports = "<section class=\"container-card\">\n    <mat-card class=\"poke
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<section class=\"container\">\n    <mat-card class=\"card\">\n        <mat-card-header>\n            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>\n            <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n        <img class=\"imgCard\" [src]=\"pokemonSelected.image\" alt=\"imagen pokemon\">\n        <hr>\n        <mat-card-content>\n            <p>\n                {{ pokemonSelected.description}} <br><br>Evolucion: {{pokemonSelected.evolution['name']| titlecase}}\n            </p>\n        </mat-card-content>\n        <hr>\n        <mat-card-actions>\n            <button (click)=\"return()\" mat-button>Regresar</button>\n        </mat-card-actions>\n    </mat-card>\n</section>"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-poke-card>\n</app-poke-card>"
+module.exports = "<section class=\"container-card\">\n\n    <app-poke-card [pokemon]=item [index]=i *ngFor=\"let item of Pokemones; let i = index\"> </app-poke-card>\n\n</section>"
 
 /***/ }),
 
@@ -74,7 +74,7 @@ module.exports = "<app-poke-card>\n</app-poke-card>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container-card\">\n    <mat-card class=\"pokecard\" *ngFor=\"let item of pokemon; let i = index\">\n\n        <mat-card-header>\n            <div mat-card-avatar class=\"headerImg\"></div>\n            <mat-card-title>{{item.name | titlecase}}</mat-card-title>\n            <mat-card-subtitle>{{item.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n\n        <img mat-card-image [src]=\"item.image\" alt=\"Photo of a Shiba Inu\">\n\n        <mat-card-content>\n            <mat-chip-list aria-label=\"Fish selection\">\n                <mat-chip>{{i}}/{{pokemon.length}}</mat-chip>\n                <div>\n                    <mat-chip>{{item.evolution.name}}</mat-chip>\n                </div>\n\n            </mat-chip-list>\n\n        </mat-card-content>\n\n        <mat-card-actions>\n            <button class=\" btn seeMoreInfo\" mat-flat-button>Ver mas ...</button>\n\n        </mat-card-actions>\n    </mat-card>\n\n</section>"
+module.exports = "<section class=\"container-card\">\n\n    <app-poke-card [pokemon]=item [index]=item.id *ngFor=\"let item of pokemon\"> </app-poke-card>\n\n</section>"
 
 /***/ }),
 
@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     { path: "pokemones", component: _components_pokemones_pokemones_component__WEBPACK_IMPORTED_MODULE_3__["PokemonesComponent"] },
     { path: "search/:finished", component: _components_search_search_component__WEBPACK_IMPORTED_MODULE_5__["SearchComponent"] },
-    { path: "pokemon", component: _components_pokemon_pokemon_component__WEBPACK_IMPORTED_MODULE_4__["PokemonComponent"] },
+    { path: "pokemon/:index", component: _components_pokemon_pokemon_component__WEBPACK_IMPORTED_MODULE_4__["PokemonComponent"] },
     { path: " ", pathMatch: "full", redirectTo: "pokemones" },
     { path: "**", pathMatch: "full", redirectTo: "pokemones" }
 ];
@@ -255,7 +255,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container-card {\n  width: 100%;\n  height: auto;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n}\n.container-card img mat-card-image {\n  height: 100px;\n}\n.container-card .pokecard {\n  width: 200px;\n  height: 300px;\n  margin: 2em;\n  display: flex;\n  flex-direction: column;\n  align-content: center;\n  background-color: whitesmoke;\n}\n.container-card mat-card-actions .seeMoreInfo {\n  color: #5eddd6;\n  border: 1px solid #5eddd6;\n  width: 100%;\n}\n.container-card mat-card-actions .seeMoreInfo:hover {\n  color: whitesmoke;\n  background-color: #5eddd6;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2NydXNpcmlzL1Byb3llY3Rvcy9kZXNhZmlvcy9hcHBQb2tlbW9uL3NyYy9hcHAvY29tcG9uZW50cy9wb2tlLWNhcmQvcG9rZS1jYXJkLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3Bva2UtY2FyZC9wb2tlLWNhcmQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7RUFDQSw2QkFBQTtBQ0FKO0FERVE7RUFDSSxhQUFBO0FDQVo7QURHSTtFQUNJLFlBQUE7RUFDQSxhQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSxzQkFBQTtFQUNBLHFCQUFBO0VBQ0EsNEJBQUE7QUNEUjtBRElRO0VBQ0ksY0F4Qks7RUF5QkwseUJBQUE7RUFDQSxXQUFBO0FDRlo7QURHWTtFQUNJLGlCQUFBO0VBQ0EseUJBN0JDO0FDNEJqQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9rZS1jYXJkL3Bva2UtY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRjb2xvci1lc21lcmFsZGE6cmdiKDk0LCAyMjEsIDIxNCk7XG4uY29udGFpbmVyLWNhcmQge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogYXV0bztcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gICAgZmxleC13cmFwOiB3cmFwO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xuICAgIGltZyB7XG4gICAgICAgIG1hdC1jYXJkLWltYWdlIHtcbiAgICAgICAgICAgIGhlaWdodDogMTAwcHg7XG4gICAgICAgIH1cbiAgICB9XG4gICAgLnBva2VjYXJkIHtcbiAgICAgICAgd2lkdGg6IDIwMHB4O1xuICAgICAgICBoZWlnaHQ6IDMwMHB4O1xuICAgICAgICBtYXJnaW46IDJlbTtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjQ1LCAyNDUsIDI0NSk7XG4gICAgfVxuICAgIG1hdC1jYXJkLWFjdGlvbnMge1xuICAgICAgICAuc2VlTW9yZUluZm8ge1xuICAgICAgICAgICAgY29sb3I6ICRjb2xvci1lc21lcmFsZGE7XG4gICAgICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAkY29sb3ItZXNtZXJhbGRhO1xuICAgICAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgICAgICAmOmhvdmVyIHtcbiAgICAgICAgICAgICAgICBjb2xvcjogcmdiKDI0NSwgMjQ1LCAyNDUpO1xuICAgICAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICRjb2xvci1lc21lcmFsZGE7XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICB9XG59IiwiLmNvbnRhaW5lci1jYXJkIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogYXV0bztcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgZmxleC13cmFwOiB3cmFwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbn1cbi5jb250YWluZXItY2FyZCBpbWcgbWF0LWNhcmQtaW1hZ2Uge1xuICBoZWlnaHQ6IDEwMHB4O1xufVxuLmNvbnRhaW5lci1jYXJkIC5wb2tlY2FyZCB7XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAzMDBweDtcbiAgbWFyZ2luOiAyZW07XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGVzbW9rZTtcbn1cbi5jb250YWluZXItY2FyZCBtYXQtY2FyZC1hY3Rpb25zIC5zZWVNb3JlSW5mbyB7XG4gIGNvbG9yOiAjNWVkZGQ2O1xuICBib3JkZXI6IDFweCBzb2xpZCAjNWVkZGQ2O1xuICB3aWR0aDogMTAwJTtcbn1cbi5jb250YWluZXItY2FyZCBtYXQtY2FyZC1hY3Rpb25zIC5zZWVNb3JlSW5mbzpob3ZlciB7XG4gIGNvbG9yOiB3aGl0ZXNtb2tlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWVkZGQ2O1xufSJdfQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9rZS1jYXJkL3Bva2UtY2FyZC5jb21wb25lbnQuc2NzcyJ9 */"
 
 /***/ }),
 
@@ -280,19 +280,14 @@ __webpack_require__.r(__webpack_exports__);
 var PokeCardComponent = /** @class */ (function () {
     //Inyectando servicio y modulo http
     function PokeCardComponent(service, router) {
-        var _this = this;
         this.service = service;
         this.router = router;
-        this.item = {};
+        this.pokemon = {};
         //Variable para guardar el objeto de pokemones
         this.Pokemones = [];
-        this.pokemonSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.service.getDatapokemon().subscribe(function (data) {
-            _this.Pokemones = data;
-        });
     }
     PokeCardComponent.prototype.seePokemon = function () {
-        this.router.navigate(["/pokemon"]);
+        this.router.navigate(["/pokemon", this.index]);
     };
     PokeCardComponent.prototype.ngOnInit = function () { };
     PokeCardComponent.ctorParameters = function () { return [
@@ -302,7 +297,7 @@ var PokeCardComponent = /** @class */ (function () {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], PokeCardComponent.prototype, "item", void 0);
+    ], PokeCardComponent.prototype, "pokemon", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
@@ -333,7 +328,7 @@ var PokeCardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9rZW1vbi9wb2tlbW9uLmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = ".container {\n  width: 70%;\n  height: auto;\n  margin-top: 20px;\n  margin-left: 200px;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  background-color: aquamarine;\n}\n.container .card {\n  width: 70%;\n  height: 500px;\n}\n.container .card .imgCard {\n  width: 200px;\n  height: 200px;\n  margin-left: 250px;\n}\n.container .card mat-card-content p {\n  font-size: 1em;\n}\n.container .card mat-card-actions button {\n  width: 100%;\n  background-color: red;\n  color: #ffffff;\n  border: 1px #ffffff;\n}\n.container .card mat-card-actions button:hover {\n  background-color: #ffffff;\n  color: red;\n  border: 1px solid red;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2NydXNpcmlzL1Byb3llY3Rvcy9kZXNhZmlvcy9hcHBQb2tlbW9uL3NyYy9hcHAvY29tcG9uZW50cy9wb2tlbW9uL3Bva2Vtb24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvcG9rZW1vbi9wb2tlbW9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksVUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSw0QkFBQTtBQ0NKO0FEQUk7RUFDSSxVQUFBO0VBQ0EsYUFBQTtBQ0VSO0FERFE7RUFDSSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0FDR1o7QURBWTtFQUNJLGNBQUE7QUNFaEI7QURFWTtFQUNJLFdBQUE7RUFDQSxxQkFBQTtFQUNBLGNBQUE7RUFDQSxtQkFBQTtBQ0FoQjtBRENnQjtFQUNJLHlCQUFBO0VBQ0EsVUFBQTtFQUNBLHFCQUFBO0FDQ3BCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wb2tlbW9uL3Bva2Vtb24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcbiAgICB3aWR0aDogNzAlO1xuICAgIGhlaWdodDogYXV0bztcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiAyMDBweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZTtcbiAgICAuY2FyZCB7XG4gICAgICAgIHdpZHRoOiA3MCU7XG4gICAgICAgIGhlaWdodDogNTAwcHg7XG4gICAgICAgIC5pbWdDYXJkIHtcbiAgICAgICAgICAgIHdpZHRoOiAyMDBweDtcbiAgICAgICAgICAgIGhlaWdodDogMjAwcHg7XG4gICAgICAgICAgICBtYXJnaW4tbGVmdDogMjUwcHg7XG4gICAgICAgIH1cbiAgICAgICAgbWF0LWNhcmQtY29udGVudCB7XG4gICAgICAgICAgICBwIHtcbiAgICAgICAgICAgICAgICBmb250LXNpemU6IDFlbTtcbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgICBtYXQtY2FyZC1hY3Rpb25zIHtcbiAgICAgICAgICAgIGJ1dHRvbiB7XG4gICAgICAgICAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xuICAgICAgICAgICAgICAgIGNvbG9yOiAjZmZmZmZmO1xuICAgICAgICAgICAgICAgIGJvcmRlcjogMXB4ICNmZmZmZmY7XG4gICAgICAgICAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gICAgICAgICAgICAgICAgICAgIGNvbG9yOiByZWQ7XG4gICAgICAgICAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICB9XG59IiwiLmNvbnRhaW5lciB7XG4gIHdpZHRoOiA3MCU7XG4gIGhlaWdodDogYXV0bztcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgbWFyZ2luLWxlZnQ6IDIwMHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YW1hcmluZTtcbn1cbi5jb250YWluZXIgLmNhcmQge1xuICB3aWR0aDogNzAlO1xuICBoZWlnaHQ6IDUwMHB4O1xufVxuLmNvbnRhaW5lciAuY2FyZCAuaW1nQ2FyZCB7XG4gIHdpZHRoOiAyMDBweDtcbiAgaGVpZ2h0OiAyMDBweDtcbiAgbWFyZ2luLWxlZnQ6IDI1MHB4O1xufVxuLmNvbnRhaW5lciAuY2FyZCBtYXQtY2FyZC1jb250ZW50IHAge1xuICBmb250LXNpemU6IDFlbTtcbn1cbi5jb250YWluZXIgLmNhcmQgbWF0LWNhcmQtYWN0aW9ucyBidXR0b24ge1xuICB3aWR0aDogMTAwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xuICBjb2xvcjogI2ZmZmZmZjtcbiAgYm9yZGVyOiAxcHggI2ZmZmZmZjtcbn1cbi5jb250YWluZXIgLmNhcmQgbWF0LWNhcmQtYWN0aW9ucyBidXR0b246aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xuICBjb2xvcjogcmVkO1xuICBib3JkZXI6IDFweCBzb2xpZCByZWQ7XG59Il19 */"
 
 /***/ }),
 
@@ -349,20 +344,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PokemonComponent", function() { return PokemonComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_pokemon_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/pokemon.service */ "./src/app/services/pokemon.service.ts");
+
+
+
 
 
 var PokemonComponent = /** @class */ (function () {
-    function PokemonComponent() {
+    function PokemonComponent(activatedRoute, service, router) {
+        var _this = this;
+        this.activatedRoute = activatedRoute;
+        this.service = service;
+        this.router = router;
+        this.pokemonSelected = {};
+        this.activatedRoute.params.subscribe(function (params) {
+            _this.pokemonSelected = _this.service.goPokemon(params['index']);
+            console.log('pokemon seleccionado');
+            console.log(_this.pokemonSelected);
+        });
     }
-    PokemonComponent.prototype.ngOnInit = function () {
+    PokemonComponent.prototype.return = function () {
+        this.router.navigate(["/pokemones"]);
     };
+    PokemonComponent.ctorParameters = function () { return [
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _services_pokemon_service__WEBPACK_IMPORTED_MODULE_3__["PokemonService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    ]; };
     PokemonComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-pokemon',
             template: __webpack_require__(/*! raw-loader!./pokemon.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/pokemon/pokemon.component.html"),
             styles: [__webpack_require__(/*! ./pokemon.component.scss */ "./src/app/components/pokemon/pokemon.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_pokemon_service__WEBPACK_IMPORTED_MODULE_3__["PokemonService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], PokemonComponent);
     return PokemonComponent;
 }());
@@ -394,18 +410,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PokemonesComponent", function() { return PokemonesComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_pokemon_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/pokemon.service */ "./src/app/services/pokemon.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 var PokemonesComponent = /** @class */ (function () {
-    function PokemonesComponent() {
+    //Inyectando servicio y modulo http
+    function PokemonesComponent(service, router) {
+        var _this = this;
+        this.service = service;
+        this.router = router;
+        //Variable para guardar el objeto de pokemones
+        this.Pokemones = [];
+        this.service.getDatapokemon().subscribe(function (data) {
+            _this.Pokemones = data;
+        });
     }
+    PokemonesComponent.ctorParameters = function () { return [
+        { type: _services_pokemon_service__WEBPACK_IMPORTED_MODULE_2__["PokemonService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    ]; };
     PokemonesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-pokemones',
             template: __webpack_require__(/*! raw-loader!./pokemones.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/pokemones/pokemones.component.html"),
             styles: [__webpack_require__(/*! ./pokemones.component.scss */ "./src/app/components/pokemones/pokemones.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_pokemon_service__WEBPACK_IMPORTED_MODULE_2__["PokemonService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], PokemonesComponent);
     return PokemonesComponent;
 }());
@@ -454,6 +487,7 @@ var SearchComponent = /** @class */ (function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
             _this.service.searchPokemon(params['finished']).subscribe(function (data) {
+                console.log(data);
                 _this.pokemon = data;
             });
         });
@@ -672,7 +706,7 @@ var PokemonService = /** @class */ (function () {
         var pokemon = new Object;
         var specipokemon = new Object;
         //Peticion por nombre
-        this.http.get("https://pokeapi.co/api/v2/pokemon/" + namePokemon + "/").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+        this.http.get("https://pokeapi.co/api/v2/pokemon/" + namePokemon + "/").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data, index) {
             //Guardando n una variable el resultado de la peticion
             pokemon = data;
             //Obteniendo [name, img, type, ] DESTRUCTURING 
@@ -684,8 +718,9 @@ var PokemonService = /** @class */ (function () {
             _this.http.get(url).subscribe(function (dataSpecie) {
                 var description = dataSpecie["flavor_text_entries"].filter(function (res) { return res.language.name === "es"; });
                 var _a = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](description, 1), flavor_text = _a[0].flavor_text;
-                //pusheando al array
+                // pusheando al array
                 _this.arrayPokemon.push({
+                    id: index + 1,
                     name: name,
                     image: front_default,
                     type: type.name,
@@ -699,6 +734,9 @@ var PokemonService = /** @class */ (function () {
                 observer.next(_this.arrayPokemon);
             }, 1000);
         });
+    };
+    PokemonService.prototype.goPokemon = function (id) {
+        return this.arrayPokemones[id];
     };
     PokemonService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }

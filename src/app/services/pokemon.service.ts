@@ -105,7 +105,9 @@ export class PokemonService {
 
 
 goPokemon(id: string) {
- 
+  console.log('------------->')
+ console.log(this.arrayPokemones[id])
+ console.log(this.arrayPokemones)
   return this.arrayPokemones[id];
 }
 
