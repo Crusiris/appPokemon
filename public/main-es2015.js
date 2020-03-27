@@ -52,7 +52,7 @@ module.exports = "<mat-card class=\"pokecard\">\n\n    <mat-card-header>\n      
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container\">\n    <mat-card class=\"card\">\n        <mat-card-header>\n            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>\n            <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n        <img class=\"imgCard\" [src]=\"pokemonSelected.image\" alt=\"imagen pokemon\">\n        <hr>\n        <mat-card-content>\n            <p>\n                {{ pokemonSelected.description}} <br><br>Evolucion: {{pokemonSelected.evolution['name']| titlecase}}\n            </p>\n        </mat-card-content>\n        <hr>\n        <mat-card-actions>\n            <button (click)=\"return()\" mat-button>Regresar</button>\n        </mat-card-actions>\n    </mat-card>\n</section>"
+module.exports = "<section class=\"container\">\n    <mat-card class=\"card\">\n        <mat-card-header>\n            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>\n            <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n        <img class=\"imgCard\" [src]=\"pokemonSelected.image\" alt=\"imagen pokemon\">\n        <hr>\n        <mat-card-content>\n            <p>\n                {{ pokemonSelected.description}} <br><br>Evolucion: {{pokemonSelected.evolution.name | titlecase}}\n            </p>\n        </mat-card-content>\n        <hr>\n        <mat-card-actions>\n            <button (click)=\"return()\" mat-button>Regresar</button>\n        </mat-card-actions>\n    </mat-card>\n</section>"
 
 /***/ }),
 
@@ -280,7 +280,7 @@ let PokeCardComponent = class PokeCardComponent {
         this.Pokemones = [];
     }
     seePokemon() {
-        this.router.navigate(["/pokemon", this.index]);
+        this.router.navigate(["/pokemon", this.pokemon.name]);
     }
     ngOnInit() { }
 };
@@ -350,9 +350,13 @@ let PokemonComponent = class PokemonComponent {
         this.router = router;
         this.pokemonSelected = {};
         this.activatedRoute.params.subscribe(params => {
-            this.pokemonSelected = this.service.goPokemon(params['index']);
-            console.log('pokemon seleccionado');
-            console.log(this.pokemonSelected);
+            console.log('en params vieneee');
+            console.log(params);
+            this.service.goPokemon(params['index']).subscribe((res) => {
+                this.pokemonSelected = res.pop();
+                console.log('aquiiiiiiii');
+                console.log(this.pokemonSelected.evolution.name);
+            });
         });
     }
     return() {
@@ -683,6 +687,8 @@ let PokemonService = class PokemonService {
     searchPokemon(finished) {
         //Convirtiendo termino en minuscula
         let namePokemon = finished.toLowerCase();
+        console.log('------> nombre');
+        console.log(namePokemon);
         let pokemon = new Object;
         let specipokemon = new Object;
         //Peticion por nombre
@@ -700,7 +706,6 @@ let PokemonService = class PokemonService {
                 const [{ flavor_text }] = description;
                 // pusheando al array
                 this.arrayPokemon.push({
-                    id: index + 1,
                     name: name,
                     image: front_default,
                     type: type.name,
@@ -716,7 +721,10 @@ let PokemonService = class PokemonService {
         });
     }
     goPokemon(id) {
-        return this.arrayPokemones[id];
+        console.log('------------->');
+        console.log(id);
+        console.log(this.arrayPokemon);
+        return this.searchPokemon(id);
     }
 };
 PokemonService.ctorParameters = () => [

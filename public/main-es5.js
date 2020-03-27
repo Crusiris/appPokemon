@@ -52,7 +52,7 @@ module.exports = "<mat-card class=\"pokecard\">\n\n    <mat-card-header>\n      
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container\">\n    <mat-card class=\"card\">\n        <mat-card-header>\n            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>\n            <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n        <img class=\"imgCard\" [src]=\"pokemonSelected.image\" alt=\"imagen pokemon\">\n        <hr>\n        <mat-card-content>\n            <p>\n                {{ pokemonSelected.description}} <br><br>Evolucion: {{pokemonSelected.evolution['name']| titlecase}}\n            </p>\n        </mat-card-content>\n        <hr>\n        <mat-card-actions>\n            <button (click)=\"return()\" mat-button>Regresar</button>\n        </mat-card-actions>\n    </mat-card>\n</section>"
+module.exports = "<section class=\"container\">\n    <mat-card class=\"card\">\n        <mat-card-header>\n            <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>\n            <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>\n        </mat-card-header>\n        <img class=\"imgCard\" [src]=\"pokemonSelected.image\" alt=\"imagen pokemon\">\n        <hr>\n        <mat-card-content>\n            <p>\n                {{ pokemonSelected.description}} <br><br>Evolucion: {{pokemonSelected.evolution.name | titlecase}}\n            </p>\n        </mat-card-content>\n        <hr>\n        <mat-card-actions>\n            <button (click)=\"return()\" mat-button>Regresar</button>\n        </mat-card-actions>\n    </mat-card>\n</section>"
 
 /***/ }),
 
@@ -287,7 +287,7 @@ var PokeCardComponent = /** @class */ (function () {
         this.Pokemones = [];
     }
     PokeCardComponent.prototype.seePokemon = function () {
-        this.router.navigate(["/pokemon", this.index]);
+        this.router.navigate(["/pokemon", this.pokemon.name]);
     };
     PokeCardComponent.prototype.ngOnInit = function () { };
     PokeCardComponent.ctorParameters = function () { return [
@@ -359,9 +359,13 @@ var PokemonComponent = /** @class */ (function () {
         this.router = router;
         this.pokemonSelected = {};
         this.activatedRoute.params.subscribe(function (params) {
-            _this.pokemonSelected = _this.service.goPokemon(params['index']);
-            console.log('pokemon seleccionado');
-            console.log(_this.pokemonSelected);
+            console.log('en params vieneee');
+            console.log(params);
+            _this.service.goPokemon(params['index']).subscribe(function (res) {
+                _this.pokemonSelected = res.pop();
+                console.log('aquiiiiiiii');
+                console.log(_this.pokemonSelected.evolution.name);
+            });
         });
     }
     PokemonComponent.prototype.return = function () {
@@ -703,6 +707,8 @@ var PokemonService = /** @class */ (function () {
         var _this = this;
         //Convirtiendo termino en minuscula
         var namePokemon = finished.toLowerCase();
+        console.log('------> nombre');
+        console.log(namePokemon);
         var pokemon = new Object;
         var specipokemon = new Object;
         //Peticion por nombre
@@ -720,7 +726,6 @@ var PokemonService = /** @class */ (function () {
                 var _a = tslib__WEBPACK_IMPORTED_MODULE_0__["__read"](description, 1), flavor_text = _a[0].flavor_text;
                 // pusheando al array
                 _this.arrayPokemon.push({
-                    id: index + 1,
                     name: name,
                     image: front_default,
                     type: type.name,
@@ -736,7 +741,10 @@ var PokemonService = /** @class */ (function () {
         });
     };
     PokemonService.prototype.goPokemon = function (id) {
-        return this.arrayPokemones[id];
+        console.log('------------->');
+        console.log(id);
+        console.log(this.arrayPokemon);
+        return this.searchPokemon(id);
     };
     PokemonService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
