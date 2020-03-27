@@ -101,4 +101,10 @@ export class PokemonService {
 
 }
 
+
+goPokemon(idx: string) {
+  return this.arrayPokemones[idx];
 }
+
+}
+

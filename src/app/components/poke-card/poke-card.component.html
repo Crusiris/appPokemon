@@ -1,29 +1,26 @@
-<section class="container-card">
-    <mat-card class="pokecard" *ngFor="let item of Pokemones; let i = index">
+<mat-card class="pokecard">
 
-        <mat-card-header>
-            <div mat-card-avatar class="headerImg"></div>
-            <mat-card-title>{{item.name | titlecase}}</mat-card-title>
-            <mat-card-subtitle>{{item.type | titlecase}}</mat-card-subtitle>
-        </mat-card-header>
+    <mat-card-header>
+        <div mat-card-avatar class="headerImg"></div>
+        <mat-card-title>{{pokemon.name | titlecase}}</mat-card-title>
+        <mat-card-subtitle>{{pokemon.type | titlecase}}</mat-card-subtitle>
+    </mat-card-header>
 
-        <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+    <img mat-card-image [src]="pokemon.image" alt="foto pokemon">
 
-        <mat-card-content>
-            <mat-chip-list aria-label="Fish selection">
-                <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip>
-                <div>
-                    <mat-chip>{{item.evolution.name}}</mat-chip>
-                </div>
+    <mat-card-content>
+        <mat-chip-list aria-label="Fish selection">
+            <!-- <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip> -->
+            <div>
+                <mat-chip>{{pokemon.evolution.name}}</mat-chip>
+            </div>
 
-            </mat-chip-list>
+        </mat-chip-list>
 
-        </mat-card-content>
+    </mat-card-content>
 
-        <mat-card-actions>
-            <button (click)="seePokemon()" class="btn seeMoreInfo" mat-flat-button>Ver mas ...</button>
+    <mat-card-actions>
+        <button (click)="seePokemon()" class="btn seeMoreInfo" mat-flat-button>Ver mas ...</button>
 
-        </mat-card-actions>
-    </mat-card>
-
-</section>
+    </mat-card-actions>
+</mat-card>

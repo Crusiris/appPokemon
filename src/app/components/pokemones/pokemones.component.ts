@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { PokemonService } from "../../services/pokemon.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -8,10 +10,17 @@ import { Component } from '@angular/core';
 })
 export class PokemonesComponent  {
   
-  constructor() {
+  //Variable para guardar el objeto de pokemones
+  Pokemones: any[] = [];
+
+  //Inyectando servicio y modulo http
+  constructor(private service: PokemonService, private router: Router) {
     
 
-    
-  } 
+    this.service.getDatapokemon().subscribe((data: any[]) => {
+      this.Pokemones = data
+    });
+  }
+
   
 }

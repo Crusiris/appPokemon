@@ -1,0 +1,36 @@
+.container {
+    width: 70%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: aquamarine;
+    .card {
+        width: 70%;
+        height: 500px;
+        .imgCard {
+            width: 200px;
+            height: 200px;
+            margin-left: 250px;
+        }
+        mat-card-content {
+            p {
+                font-size: 1em;
+            }
+        }
+        mat-card-actions {
+            button {
+                width: 100%;
+                background-color: red;
+                color: #ffffff;
+                border: 1px #ffffff;
+                &hover {
+                    background-color: #ffffff;
+                    color: red;
+                }
+            }
+        }
+    }
+}

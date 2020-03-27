@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./poke-card.component.scss"]
 })
 export class PokeCardComponent implements OnInit {
-  @Input() item: any = {};
+  @Input() pokemon: any = {};
   @Input() index: number;
 
   @Output() pokemonSelected: EventEmitter<number>;
@@ -17,16 +17,12 @@ export class PokeCardComponent implements OnInit {
 
   //Inyectando servicio y modulo http
   constructor(private service: PokemonService, private router: Router) {
-    this.pokemonSelected= new EventEmitter();
-
-    this.service.getDatapokemon().subscribe((data: any[]) => {
-      this.Pokemones = data
-    });
+   
   }
 
   seePokemon(){
     
-   this.router.navigate(["/pokemon"]);
+   this.router.navigate(["/pokemon", this.index]);
    
   }
 
