@@ -1,8 +1,9 @@
-<mat-toolbar color=primary>
+
+<mat-toolbar class="header-page" color=primary>
     <span><img src="../../../../assets/img/pokeball2.png" alt=""></span>
 
 
-    <ul routerLinkActive="active">
+    <ul class="link-poke" routerLinkActive="active">
         <a [routerLink]="['pokemones']" mat-button color="accent">Pokemones</a>
     </ul>
 
@@ -11,13 +12,14 @@
     <form class="containersearch">
         <mat-form-field class="search">
             <mat-label >Encuentra tu pokemon</mat-label>
-            <input #finished (keyup.enter)="search(finished.value)" matInput>
+            <input class="input-search" #finished (keyup.enter)="search(finished.value)" matInput>
         </mat-form-field>
         <div  class=containerBtn>
             <button mat-raised-button color="accent" class="btn btnSearch" mat-button (click)="search(finished.value)">Buscar</button>
         </div>
       
     </form>
-
-
 </mat-toolbar>
+
+
+

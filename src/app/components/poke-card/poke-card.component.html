@@ -1,28 +1,36 @@
-<mat-card class="pokecard" id="30" [ngStyle]="{backgroundColor: getType(pokemon.type)}">
-   
-    <img class="img-card" mat-card-image [src]="pokemon.image" alt="foto pokemon">
-    
+<div class="card-wrap">
+        <mat-card class="pokecard" id="30" [ngStyle]="{backgroundColor: getType(pokemon.type)}">
+            <div class="card-front">
+                <img class="img-card" mat-card-image [src]="pokemon.image" alt="foto pokemon">
 
-    <mat-card-header class="header-card">
-        <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>
-        <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>
-    </mat-card-header>
+                <mat-card-header class="header-card">
+                    <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>
+                    <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>
+                </mat-card-header>
 
-    <mat-card-content class="conten-card">
-        <mat-chip-list class="mat-chip"aria-label="Fish selection">
-            <div>
-             <mat-chip class="chip-card">{{index}}/{{Pokemones.length}}</mat-chip> 
+                <mat-card-content class="conten-card">
+                    <mat-chip class="chip-card">{{index}}/{{Pokemones.length}}</mat-chip> 
+                    <mat-chip class="chip-card">Evo. {{pokemon.evolution.name | titlecase}}</mat-chip>   
+                </mat-card-content>
+
+                <mat-card-actions >
+                    <span class="btn seeMoreInfo" mat-flat-button>Girame</span>
+                </mat-card-actions>
+
             </div>
-            <div>
-                <mat-chip class="chip-card">Evo. {{pokemon.evolution.name | titlecase}}</mat-chip>
+            <div class="card-back">
+                <mat-card-header class="header-card">
+                    <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>
+                    <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content class="conten-card">
+                    <p>{{pokemon.description}}</p>
+
+                    <img class="img-card-back" mat-card-image [src]="pokemon.image" alt="foto pokemon">
+                </mat-card-content>
+
+
             </div>
-
-        </mat-chip-list>
-
-    </mat-card-content>
-
-    <mat-card-actions >
-        <button (click)="seePokemon()" class="btn seeMoreInfo" mat-flat-button>Ver mas ...</button>
-
-    </mat-card-actions>
-</mat-card>
+        </mat-card>
+    </div>

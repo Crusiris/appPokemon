@@ -1,10 +1,20 @@
-span {
-    img {
-        width: 50px;
-        height: auto;
+.header-page {
+    width: 100%!important;
+    span {
+        img {
+            width: 50px!important;
+            height: auto;
+
+            @media only screen and (max-width: 320px) {
+                display: none;
+            }
+        }
     }
-}
-mat-toolbar {
+    .link-poke{
+        @media only screen and (max-width: 600px) {
+          display: none;   
+        }
+    }
     
     div {
         flex: 3 3 auto
@@ -14,13 +24,31 @@ mat-toolbar {
         flex-direction: row;
         justify-content: center;
         height: 100%;
+        @media only screen and (max-width: 600px) {
+            width: fit-content;
+        }
+        
         .search{
             color: #FFEA00;
+            .input-search{
+               @media only screen and (max-width: 320px) {
+                    width: 168px
+                }
+            }  
         }
         .btnSearch {
             margin-top: 1em;
             margin-left: 1em;
             font-size: large;
+            @media only screen and (max-width: 600px) {
+                font-size: 12px;
+                margin-left: 0;
+            }
+            @media only screen and (max-width: 320px) {
+                font-size: 10px;
+                margin-left: 0;
+            }
+            
         }
         mat-form-field {
             mat-label {

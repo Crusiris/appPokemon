@@ -1,48 +1,107 @@
-.pokecard{
-    width: 200px;
-    height: 300px;
-    margin: 2em;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    padding:  0;
-    align-items: center;
-    box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
-
-    .img-card{
-        background-color: inherit;
-        border-radius: 50%;
-        width:120px;
-        height: auto;
-        text-align: center;
-        height: auto;
-        box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
-
-    }
-
-    .conten-card{
-        .mat-chip{
-            div{
-                .chip-card{
-                    //border: 1px solid#1a237e;
+.card-wrap{
+        margin: 2em;
+        -webkit-perspective: 800;
+        perspective: 800;
+        &:hover{
+            .pokecard{
+                transform: rotateY(180deg);
+            }
+        }
+        .pokecard{
+            width: 200px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: .7s ease;
+            
+            .card-front{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                padding:  0;
+                align-items: center;
+                box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
+                position: absolute;
+                top: 0;
+                left: 0;
+                -webkit-backface-visibility:hidden;
+                backface-visibility:hidden;
+                
+                .img-card{
                     background-color: inherit;
-                   box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
+                    border-radius: 50%;
+                    width:120px;
+                    height: auto;
+                    text-align: center;
+                    margin-bottom: 2em;
+                    height: auto;
+                    box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
+
+                }
+
+                .conten-card{
+                    .chip-card{
+                        margin: 0.5em;
+                        padding: 0.5em;
+                        background-color: inherit;
+                        border-radius: 10%;
+                        box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);  
+                    }
+                }
+
+                mat-card-actions{
+                    margin-top: 2em;
+                    .seeMoreInfo{
+                        padding: 0.5em 2em;
+                        background-color: inherit;
+                        border-bottom: 1px solid#1a237e;
+                        color:#1a237e;
+                        
+                    }
                 }
             }
-            
-        }
-    }
+            .card-back{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                padding:  0;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                -webkit-backface-visibility:hidden;
+                backface-visibility:hidden;
+                transform: rotateY(180deg);
+                box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.3);
 
-    mat-card-actions{
-        .seeMoreInfo{
-            background-color: #1a237e;
-            color: #fff;
-            &:hover{
-                border: 1px solid#1a237e;
-                color:#1a237e;
-                background-color: inherit;
+                .header-card{
+                    text-align: center;
+                }
+
+                .conten-card{
+                    width: 80%;
+                    height: 60%;
+                    padding: 0.3em;
+                    margin-top: 1em;
+                    font-size: 0.9em;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    text-align: justify;
+                    text-align: justify;
+                }
+
+                .img-card-back{
+                    width: 70%;
+                    height: auto;
+                    text-align: center;
+                }
+                
             }
         }
     }
-}
-

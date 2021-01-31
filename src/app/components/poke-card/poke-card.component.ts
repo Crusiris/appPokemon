@@ -19,15 +19,7 @@ export class PokeCardComponent implements OnInit {
   
 
   //Inyectando servicio y modulo http
-  constructor(private service: PokemonService, private router: Router) {
-    
-  }
-
-  seePokemon(){
-    
-   this.router.navigate(["/pokemon", this.pokemon.name, this.color]);
-   
-  }
+  constructor(private service: PokemonService, private router: Router) {}
 
   getType = (type) => {
     const colors = {

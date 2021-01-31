@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 ///////////*****MODULO ANGULAR MATERIAL*****////////////
 import { MaterialModule } from './material.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -14,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { PokemonesComponent } from './components/pokemones/pokemones.component';
-import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
 import { SearchComponent } from './components/search/search.component';
 
@@ -23,7 +24,6 @@ import { SearchComponent } from './components/search/search.component';
     AppComponent,
     HeaderComponent,
     PokemonesComponent,
-    PokemonComponent,
     PokeCardComponent,
     SearchComponent
   ],
@@ -32,6 +32,8 @@ import { SearchComponent } from './components/search/search.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatToolbarModule,
+    MatSidenavModule,
     HttpClientModule
  
   ],
