@@ -19,7 +19,7 @@ export class PokemonComponent {
      
       this.service.goPokemon(params['index']).subscribe((res:[])=>{
         this.pokemonSelected = res.pop()
-        console.log('aquiiiiiiii')
+        this.pokemonSelected['color'] = params.color;
         console.log(this.pokemonSelected.evolution.name)
       })
     })
@@ -28,5 +28,6 @@ export class PokemonComponent {
   return(){
     this.router.navigate(["/pokemones"]);
   }
+  
 
 }

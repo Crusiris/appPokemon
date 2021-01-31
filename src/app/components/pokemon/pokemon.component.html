@@ -1,5 +1,5 @@
-<section class="container">
-    <mat-card class="card">
+<section class="container" >
+    <mat-card class="card" [ngStyle]="{backgroundColor: pokemonSelected.color}">
         <mat-card-header>
             <mat-card-title>Pokemon: {{pokemonSelected['name'] | titlecase}}</mat-card-title>
             <mat-card-subtitle><span>Tipo</span>: {{pokemonSelected.type | titlecase}}</mat-card-subtitle>
@@ -16,4 +16,4 @@
             <button (click)="return()" mat-button>Regresar</button>
         </mat-card-actions>
     </mat-card>
-</section>
+</section> 

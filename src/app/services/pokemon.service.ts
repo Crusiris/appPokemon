@@ -72,6 +72,7 @@ export class PokemonService {
     this.http.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}/`).pipe(map((data, index: number) =>{
      //Guardando n una variable el resultado de la peticion
      pokemon = data;
+     
      //Obteniendo [name, img, type, ] DESTRUCTURING 
      
        const { name } = pokemon['species'];

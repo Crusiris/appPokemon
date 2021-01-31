@@ -1,25 +1,27 @@
-<mat-card class="pokecard">
+<mat-card class="pokecard" id="30" [ngStyle]="{backgroundColor: getType(pokemon.type)}">
+   
+    <img class="img-card" mat-card-image [src]="pokemon.image" alt="foto pokemon">
+    
 
-    <mat-card-header>
-        <div mat-card-avatar class="headerImg"></div>
+    <mat-card-header class="header-card">
         <mat-card-title> {{pokemon.name | titlecase}}</mat-card-title>
         <mat-card-subtitle>Tipo: {{pokemon.type | titlecase}}</mat-card-subtitle>
     </mat-card-header>
 
-    <img mat-card-image [src]="pokemon.image" alt="foto pokemon">
-
-    <mat-card-content>
-        <mat-chip-list aria-label="Fish selection">
-            <!-- <mat-chip>{{i}}/{{Pokemones.length}}</mat-chip> -->
+    <mat-card-content class="conten-card">
+        <mat-chip-list class="mat-chip"aria-label="Fish selection">
             <div>
-                <mat-chip>Evolucion: {{pokemon.evolution.name | titlecase}}</mat-chip>
+             <mat-chip class="chip-card">{{index}}/{{Pokemones.length}}</mat-chip> 
+            </div>
+            <div>
+                <mat-chip class="chip-card">Evo. {{pokemon.evolution.name | titlecase}}</mat-chip>
             </div>
 
         </mat-chip-list>
 
     </mat-card-content>
 
-    <mat-card-actions>
+    <mat-card-actions >
         <button (click)="seePokemon()" class="btn seeMoreInfo" mat-flat-button>Ver mas ...</button>
 
     </mat-card-actions>
